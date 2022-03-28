@@ -22,6 +22,8 @@
  * Define Global Variables
  * 
 */
+const sections = document.getElementsByTagName("section");          // creates a HTML Collection of all <section>'s
+const navlist = document.getElementById("navbar__list");            // Nav__List
 
 
 /**
@@ -29,7 +31,11 @@
  * Start Helper Functions
  * 
 */
-
+// function getSections(){                                           // get Attributes of all <section>'s
+//     for (let section of sections) {
+//         console.log(section.getAttribute("data-nav"));
+//     }
+// }
 
 
 /**
@@ -40,6 +46,15 @@
 
 // build the nav
 
+function buildNav(){                                           // Build with Attributes of all <section>'s the NAV
+    for (let section of sections) {
+        // console.log(section.getAttribute("data-nav"));
+        const section_data = section.getAttribute("data-nav");
+        navlist.insertAdjacentHTML('beforeend', `<li class="menu__link">${section_data}</li>`);
+    }
+}
+
+buildNav();
 
 // Add class 'active' to section when near top of viewport
 
