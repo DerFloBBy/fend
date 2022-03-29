@@ -66,6 +66,7 @@ function buildNav(){                                         // Build with Attri
         newListItemLink.textContent = section.dataset.nav;
         newListItemLink.classList.add('menu__link');
         newListItemLink.setAttribute('data-nav', section.id);
+        newListItemLink.id = `nav_${section.id}`;
         newListItem.appendChild(newListItemLink);
         navlist.appendChild(newListItem);
     }
@@ -81,6 +82,10 @@ function activeSection() {
         section.classList.remove('your-active-class');
         if ((0 <= top) && (top < bottom-top)) {
             section.classList.add('your-active-class');
+            console.log(section.id);
+            document.querySelector(`#nav_${section.id}`).classList.add('menu__link-active');
+        } else {
+            document.querySelector(`#nav_${section.id}`).classList.remove('menu__link-active');
         }
     }
 }
@@ -88,7 +93,7 @@ function activeSection() {
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection(evt){
-    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView({behavior: 'smooth'});
+    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
 }
 
 
