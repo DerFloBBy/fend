@@ -64,6 +64,7 @@ function buildNav(){                                         // Build with Attri
         newListItemLink = document.createElement('a');
         newListItemLink.textContent = section.dataset.nav;
         newListItemLink.classList.add('menu__link');
+        newListItemLink.setAttribute('data-nav', section.id);
         newListItem.appendChild(newListItemLink);
         navlist.appendChild(newListItem);
     }
@@ -73,6 +74,9 @@ function buildNav(){                                         // Build with Attri
 
 
 // Scroll to anchor ID using scrollTO event
+function scrollToSection(evt){
+    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView({behavior: 'smooth'});
+}
 
 
 /**
@@ -85,6 +89,7 @@ function buildNav(){                                         // Build with Attri
 buildNav();
 
 // Scroll to section on link click
+navlist.addEventListener('click', scrollToSection);
 
 // Set sections as active
 
