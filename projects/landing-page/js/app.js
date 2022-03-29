@@ -22,7 +22,8 @@
  * Define Global Variables
  * 
 */
-const sections = document.getElementsByTagName("section");          // creates a HTML Collection of all <section>'s
+// const sections = document.getElementsByTagName("section");          // creates a HTML Collection of all <section>'s
+const sections = document.querySelectorAll("section");          // creates a HTML Collection of all <section>'s
 const navlist = document.getElementById("navbar__list");            // Nav__List
 
 
@@ -71,6 +72,18 @@ function buildNav(){                                         // Build with Attri
 }
 
 // Add class 'active' to section when near top of viewport
+function activeSection() {
+    for (const section of sections) {
+        let rect = section.getBoundingClientRect();
+        let top = rect.top;
+        let bottom = rect.bottom;
+
+        section.classList.remove('your-active-class');
+        if ((0 <= top) && (top < bottom-top)) {
+            section.classList.add('your-active-class');
+        }
+    }
+}
 
 
 // Scroll to anchor ID using scrollTO event
@@ -92,5 +105,7 @@ buildNav();
 navlist.addEventListener('click', scrollToSection);
 
 // Set sections as active
+document.addEventListener('scroll', activeSection);
+activeSection();
 
 
