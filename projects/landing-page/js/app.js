@@ -82,7 +82,6 @@ function activeSection() {
         section.classList.remove('your-active-class');
         if ((0 <= top) && (top < bottom-top)) {
             section.classList.add('your-active-class');
-            console.log(section.id);
             document.querySelector(`#nav_${section.id}`).classList.add('menu__link-active');
         } else {
             document.querySelector(`#nav_${section.id}`).classList.remove('menu__link-active');
@@ -96,6 +95,15 @@ function scrollToSection(evt){
     document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
 }
 
+// Hide the Navbar if downscroll
+function hideNavbar(){
+    if (window.pageYOffset > scrollPosition){                               // scrollPosition: initialized to pageYOffset
+        document.querySelector('.navbar__menu').style.display = "none";
+    } else {
+        document.querySelector('.navbar__menu').style.display = "block";
+    }
+    scrollPosition = window.pageYOffset;
+}
 
 /**
  * End Main Functions
@@ -113,4 +121,6 @@ navlist.addEventListener('click', scrollToSection);
 document.addEventListener('scroll', activeSection);
 activeSection();
 
-
+// Hide Navbar if downscroll
+document.addEventListener('scroll', hideNavbar);
+let scrollPosition = window.pageYOffset;
