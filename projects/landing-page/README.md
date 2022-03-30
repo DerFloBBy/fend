@@ -2,12 +2,37 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Project-Description](#Project-Description)
+* [How-it-works](#How-it-works)
+* [Footer](#footer)
 
-## Instructions
+## Project-Description
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+It is a multi-section web page. The web page has a responsible disign.
+You can add content to the page (`section`'s) and the Navigationbar will be created dynamically.
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## How-it-works
+
+### Build Navigationbar
+
+The **function** `buildNav` creates for each section with `createElement` an Anchor-Element in a
+List-Element and places it in the unorderd list. Incl. `class`, `id` and `data-Attribute`.
+
+### Activate active section and Navbar-title
+
+The **function** `activeSection` uses `getBoundingClientRect` to active the current displayed section
+and NavBar-ListItem.
+
+### Scroll to anchor ID
+
+The **function** `scrollToSection` uses `scrollIntoView` to scroll to the section-anchor ID
+
+### Hide the Navbar
+
+The **function** `hideNavbar` uses `window.pageYOffset` to check whether the page ist scrolling up
+or down. If "down" the Navbar is hidden
+
+# Footer
+
+That's a project from Udacity! :joy:
