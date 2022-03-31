@@ -100,7 +100,12 @@ const activeSection = () => {
 // Scroll to anchor ID using scrollIntoView event
 // **********************************************
 const scrollToSection = (evt) => {
+    // removeEventListener (hideNavbar) so that Navbar doesn't disappears
+    document.removeEventListener('scroll', hideNavbar);
+    // Scroll 2 View
     document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
+    // Timeout bevor addEventListener (hideNavbar)
+    setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 500);
 }
 
 // Hide the Navbar if downscroll
