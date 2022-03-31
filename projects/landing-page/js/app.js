@@ -25,6 +25,7 @@
 
 const sections = document.querySelectorAll("section");              // creates a NodeList of all <section>'s
 const navlist = document.getElementById("navbar__list");            // Nav__List
+const button = document.getElementById("scroll-to-top-button");     // Scroll to Top Button
 
 /**
  * End Global Variables
@@ -102,9 +103,9 @@ const activeSection = () => {
 const scrollToSection = (evt) => {
     // removeEventListener (hideNavbar) so that Navbar doesn't disappears
     document.removeEventListener('scroll', hideNavbar);
-    // Scroll 2 View
+    // Scroll to View
     document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
-    // Timeout bevor addEventListener (hideNavbar)
+    // Timeout bevor addEventListener (hideNavbar) starts again
     setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 500);
 }
 
@@ -120,6 +121,23 @@ const hideNavbar = () => {
         document.querySelector('.navbar__menu').style.display = "block";
     }
     scrollPosition = window.pageYOffset;
+}
+
+// Scroll To Top
+// *************
+const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    button.style.visibility = "hidden";
+}
+
+
+// Scroll To Top Button unhide
+const scrollToTopButton = () => {
+    if (window.pageYOffset > 300){
+        button.style.visibility = "visible";
+    } else {
+        button.style.visibility = "hidden";
+    }
 }
 
 /**
@@ -145,3 +163,12 @@ activeSection();
 // **************************
 document.addEventListener('scroll', hideNavbar);
 let scrollPosition = window.pageYOffset;
+
+// Scroll To Top
+// *************
+button.addEventListener('click', scrollToTop);
+
+// Scroll To Top Button
+// ********************
+document.addEventListener('scroll', scrollToTopButton);
+scrollToTopButton();
