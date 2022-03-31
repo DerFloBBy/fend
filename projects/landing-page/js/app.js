@@ -59,7 +59,7 @@ function buildNav(){
 
 /* The following is according to the rubric! */
 // Build the NAV with Attributes of all <section>'s
-function buildNav(){
+const buildNav = () => {
     for (const section of sections) {
         // create 'li' and 'a' Element
         newListItem = document.createElement('li');
@@ -78,7 +78,7 @@ function buildNav(){
 
 // Add class 'active' to section when near top of viewport
 // *******************************************************
-function activeSection() {
+const activeSection = () => {
     for (const section of sections) {
         // getBoundingClientRect() to get the position of each section
         let rect = section.getBoundingClientRect();
@@ -99,13 +99,13 @@ function activeSection() {
 
 // Scroll to anchor ID using scrollIntoView event
 // **********************************************
-function scrollToSection(evt){
+const scrollToSection = (evt) => {
     document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
 }
 
 // Hide the Navbar if downscroll
 // *****************************
-function hideNavbar(){
+const hideNavbar = () => {
     // scrollPosition: initialized to pageYOffset
     if (window.pageYOffset > scrollPosition){
         // scroll DOWN / hide Navbar
