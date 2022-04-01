@@ -24,7 +24,7 @@
 */
 
 const sections = document.querySelectorAll('section');              // creates a NodeList of all <section>'s
-const navlist = document.getElementById('navbar__list');            // Nav__List
+const navList = document.getElementById('navbar__list');            // Nav__List
 const hamburger = document.querySelector('.hamburger');             // Hamburger menu
 const button = document.getElementById('scroll-to-top-button');     // Scroll to Top Button
 let scrollPosition = window.pageYOffset;                            // scrollPosition: initialized to pageYOffset
@@ -55,7 +55,7 @@ function buildNav(){
         const section_id = section.getAttribute("id");
 
         // put ListItem with Anchor at the end of unorderd List
-        navlist.insertAdjacentHTML('beforeend', `<li><a href="#${section_id}" class="menu__link">${section_data}</a></li>`);
+        navList.insertAdjacentHTML('beforeend', `<li><a href="#${section_id}" class="menu__link">${section_data}</a></li>`);
     }
 }
 */
@@ -65,8 +65,8 @@ function buildNav(){
 const buildNav = () => {
     for (const section of sections) {
         // create 'li' and 'a' Element
-        newListItem = document.createElement('li');
-        newListItemLink = document.createElement('a');
+        const newListItem = document.createElement('li');
+        const newListItemLink = document.createElement('a');
         // section.dataset.nav holds the Section-No (equal to the header <h2>)
         newListItemLink.textContent = section.dataset.nav;
         // add class, data-nav (used for scrollToSection) and id (used for highlighting nav-section when aktiv) too the 'a' Element
@@ -75,7 +75,7 @@ const buildNav = () => {
         newListItemLink.id = `nav_${section.id}`;
 
         newListItem.appendChild(newListItemLink);
-        navlist.appendChild(newListItem);
+        navList.appendChild(newListItem);
     }
 }
 
@@ -108,7 +108,7 @@ const scrollToSection = (evt) => {
     // Scroll to View
     document.getElementById(evt.target.getAttribute('data-nav')).scrollIntoView({behavior: 'smooth'});
     hamburger.classList.toggle("active");
-    navlist.classList.toggle("active");
+    navList.classList.toggle("active");
     evt.preventDefault();
     // Timeout bevor addEventListener (hideNavbar) starts again
     setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 1000);
@@ -148,7 +148,7 @@ const scrollToTopButton = () => {
 // Open Hamburger menu
 const openMenu = () => {
     hamburger.classList.toggle("active");
-    navlist.classList.toggle("active");
+    navList.classList.toggle("active");
 }
 
 /**
@@ -163,7 +163,7 @@ buildNav();
 
 // Scroll to section on link click
 // *******************************
-navlist.addEventListener('click', scrollToSection);
+navList.addEventListener('click', scrollToSection);
 
 // Set sections as active
 // **********************
