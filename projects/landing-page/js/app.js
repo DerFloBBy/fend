@@ -44,25 +44,8 @@ let scrollPosition = window.pageYOffset;                            // scrollPos
 
 // Build the nav
 // *************
-
-/* The following is easier but NOT ALLOWED according to the rubric! */
-/*
-// Build the NAV with Attributes of all <section>'s
-function buildNav(){
-    for (let section of sections) {
-        // section.Attributes for ListItem.innerText and ListItem.href
-        const section_data = section.getAttribute("data-nav");
-        const section_id = section.getAttribute("id");
-
-        // put ListItem with Anchor at the end of unorderd List
-        navList.insertAdjacentHTML('beforeend', `<li><a href="#${section_id}" class="menu__link">${section_data}</a></li>`);
-    }
-}
-*/
-
-/* The following is according to the rubric! */
-// Build the NAV with Attributes of all <section>'s
 const buildNav = () => {
+    // Build the NAV with Attributes of all <section>'s
     for (const section of sections) {
         // create 'li' and 'a' Element
         const newListItem = document.createElement('li');
@@ -77,7 +60,7 @@ const buildNav = () => {
         newListItem.appendChild(newListItemLink);
         navList.appendChild(newListItem);
     }
-}
+};
 
 // Add class 'active' to section when near top of viewport
 // *******************************************************
@@ -97,7 +80,7 @@ const activeSection = () => {
             document.querySelector(`#nav_${section.id}`).classList.remove('menu__link-active');
         }
     }
-}
+};
 
 
 // Scroll to anchor ID using scrollIntoView event
@@ -112,7 +95,7 @@ const scrollToSection = (evt) => {
     evt.preventDefault();
     // Timeout bevor addEventListener (hideNavbar) starts again
     setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 1000);
-}
+};
 
 // Hide the Navbar if downscroll
 // *****************************
@@ -126,14 +109,14 @@ const hideNavbar = () => {
         document.querySelector('.navbar__menu').style.display = 'block';
     }
     scrollPosition = window.pageYOffset;
-}
+};
 
 // Scroll To Top
 // *************
 const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: 'smooth'});
     button.style.visibility = 'hidden';
-}
+};
 
 
 // Scroll To Top Button unhide
@@ -143,13 +126,13 @@ const scrollToTopButton = () => {
     } else {
         button.style.visibility = 'hidden';
     }
-}
+};
 
 // Open Hamburger menu
 const openMenu = () => {
     hamburger.classList.toggle("active");
     navList.classList.toggle("active");
-}
+};
 
 /**
  * End Main Functions
