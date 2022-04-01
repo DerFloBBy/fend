@@ -23,9 +23,10 @@
  * 
 */
 
-const sections = document.querySelectorAll("section");              // creates a NodeList of all <section>'s
-const navlist = document.getElementById("navbar__list");            // Nav__List
-const button = document.getElementById("scroll-to-top-button");     // Scroll to Top Button
+const sections = document.querySelectorAll('section');              // creates a NodeList of all <section>'s
+const navlist = document.getElementById('navbar__list');            // Nav__List
+const button = document.getElementById('scroll-to-top-button');     // Scroll to Top Button
+let scrollPosition = window.pageYOffset;                            // scrollPosition: initialized to pageYOffset
 
 /**
  * End Global Variables
@@ -104,7 +105,7 @@ const scrollToSection = (evt) => {
     // removeEventListener (hideNavbar) so that Navbar doesn't disappears
     document.removeEventListener('scroll', hideNavbar);
     // Scroll to View
-    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView({behavior: "smooth"});
+    document.getElementById(evt.target.getAttribute('data-nav')).scrollIntoView({behavior: 'smooth'});
     evt.preventDefault();
     // Timeout bevor addEventListener (hideNavbar) starts again
     setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 1000);
@@ -114,12 +115,12 @@ const scrollToSection = (evt) => {
 // *****************************
 const hideNavbar = () => {
     // scrollPosition: initialized to pageYOffset
-    if (window.pageYOffset > scrollPosition){
+    if (window.pageYOffset > scrollPosition) {
         // scroll DOWN / hide Navbar
-        document.querySelector('.navbar__menu').style.display = "none";
+        document.querySelector('.navbar__menu').style.display = 'none';
     } else {
         // scroll UP / display Navbar
-        document.querySelector('.navbar__menu').style.display = "block";
+        document.querySelector('.navbar__menu').style.display = 'block';
     }
     scrollPosition = window.pageYOffset;
 }
@@ -128,18 +129,17 @@ const hideNavbar = () => {
 // *************
 const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: 'smooth'});
-    button.style.visibility = "hidden";
+    button.style.visibility = 'hidden';
 }
 
 
 // Scroll To Top Button unhide
 const scrollToTopButton = () => {
-    if (window.pageYOffset > 300){
-        button.style.visibility = "visible";
+    if (window.pageYOffset > 300) {
+        button.style.visibility = 'visible';
     } else {
-        button.style.visibility = "hidden";
+        button.style.visibility = 'hidden';
     }
-    evt.preventDefault();
 }
 
 /**
@@ -164,7 +164,6 @@ activeSection();
 // Hide Navbar if scroll down
 // **************************
 document.addEventListener('scroll', hideNavbar);
-let scrollPosition = window.pageYOffset;
 
 // Scroll To Top
 // *************
