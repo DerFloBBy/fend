@@ -104,9 +104,10 @@ const scrollToSection = (evt) => {
     // removeEventListener (hideNavbar) so that Navbar doesn't disappears
     document.removeEventListener('scroll', hideNavbar);
     // Scroll to View
-    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView();
+    document.getElementById(evt.target.getAttribute("data-nav")).scrollIntoView({behavior: "smooth"});
+    evt.preventDefault();
     // Timeout bevor addEventListener (hideNavbar) starts again
-    setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 500);
+    setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 1000);
 }
 
 // Hide the Navbar if downscroll
@@ -138,6 +139,7 @@ const scrollToTopButton = () => {
     } else {
         button.style.visibility = "hidden";
     }
+    evt.preventDefault();
 }
 
 /**
