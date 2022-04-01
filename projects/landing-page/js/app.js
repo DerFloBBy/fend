@@ -25,6 +25,7 @@
 
 const sections = document.querySelectorAll('section');              // creates a NodeList of all <section>'s
 const navlist = document.getElementById('navbar__list');            // Nav__List
+const hamburger = document.querySelector('.hamburger');             // Hamburger menu
 const button = document.getElementById('scroll-to-top-button');     // Scroll to Top Button
 let scrollPosition = window.pageYOffset;                            // scrollPosition: initialized to pageYOffset
 
@@ -106,6 +107,8 @@ const scrollToSection = (evt) => {
     document.removeEventListener('scroll', hideNavbar);
     // Scroll to View
     document.getElementById(evt.target.getAttribute('data-nav')).scrollIntoView({behavior: 'smooth'});
+    hamburger.classList.toggle("active");
+    navlist.classList.toggle("active");
     evt.preventDefault();
     // Timeout bevor addEventListener (hideNavbar) starts again
     setTimeout(() => {document.addEventListener('scroll', hideNavbar)}, 1000);
@@ -142,6 +145,12 @@ const scrollToTopButton = () => {
     }
 }
 
+// Open Hamburger menu
+const openMenu = () => {
+    hamburger.classList.toggle("active");
+    navlist.classList.toggle("active");
+}
+
 /**
  * End Main Functions
  * 
@@ -173,3 +182,7 @@ button.addEventListener('click', scrollToTop);
 // ********************
 document.addEventListener('scroll', scrollToTopButton);
 scrollToTopButton();
+
+// Click Hamburger menu
+// ********************
+hamburger.addEventListener('click', openMenu);
